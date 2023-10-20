@@ -1,0 +1,23 @@
+# production
+dist
+
+# dependencies
+node_modules
+
+package-lock.json
+
+# production
+client/build
+
+client/package-lock.json
+
+# dependencies
+client/node_modules
+
+# Docker File
+client/.dockerignore
+client/Dockerfile
+client/nodemon.json
+
+# Git Ignore Client
+client/.gitignore
