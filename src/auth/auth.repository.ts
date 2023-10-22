@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Auth, IAuth, IUser } from "./auth.schema";
-import { AuthFailureError, ValidationError } from "../../core";
+import { AuthFailureError, BadRequestError, ValidationError } from "../../core";
 import { authenticationService } from "../../core/services/authentication";
 
 class AuthRepository {
@@ -16,6 +16,14 @@ class AuthRepository {
 
     if (errors != null) {
       throw new ValidationError(errors);
+    }
+
+    const userExists = await this.model.findOne({
+      email: user.email,
+    });
+
+    if (userExists) {
+      throw new BadRequestError("User Already Exists");
     }
 
     const newUser = await this.model.create(user);

@@ -1,6 +1,5 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import jwt from "jsonwebtoken";
-import { UserType } from "./auth.types";
 import { authenticationService } from "../../core/services/authentication";
 
 export interface IAuth extends Document {
@@ -9,13 +8,13 @@ export interface IAuth extends Document {
   email: string;
   password: string;
   tokens: { token: string }[];
+  isSignupOperation: boolean;
   generateAuthToken(): Promise<string>;
   checkToken(token: string): Promise<string>;
   removeToken(token: string): Promise<string>;
 }
 
 export interface IUser extends Document {
-  userType: UserType;
   email: string;
 }
 
@@ -23,11 +22,15 @@ export interface IUser extends Document {
 const AuthSchema: Schema<IAuth> = new Schema({
   firstname: {
     type: String,
-    required: true,
+    required: function () {
+      return this.isSignupOperation;
+    },
   },
   lastname: {
     type: String,
-    required: true,
+    required: function () {
+      return this.isSignupOperation;
+    },
   },
   email: {
     type: String,

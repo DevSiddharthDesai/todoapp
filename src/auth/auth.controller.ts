@@ -19,10 +19,13 @@ class AuthController {
   async signIn(req: Request, res: Response, next: NextFunction) {
     try {
       const user: IAuth = req.body;
-      const result = await authService.signIn(user);
+      const LoginToken = await authService.signIn(user);
 
-      if (result) {
-        res.status(200).send("Logged In Successfully");
+      if (LoginToken) {
+        res
+          .status(200)
+          .cookie("access-token", LoginToken)
+          .send("Logged In Successfully");
       }
     } catch (e) {
       next(e);
@@ -32,13 +35,19 @@ class AuthController {
   async signOut(req: Request, res: Response, next: NextFunction) {
     const user: IUser = req.body;
     try {
-      if (!req.headers.authorization) {
+      if (!req.headers.cookie) {
         return next(new JsonWebTokenError("Invalid Token"));
       }
+      // if (!req.headers.authorization) {
+      //   return next(new JsonWebTokenError("Invalid Token"));
+      // }
 
-      const [_, token] = req.headers.authorization.split("Bearer ");
+      // const [_, token] = req.headers.authorization.split("Bearer ");
 
-      const result = await authService.signOut(user, token);
+      const cookies = req.headers.cookie;
+      const tokenValue = cookies?.split("=")[1];
+
+      const result = await authService.signOut(user, tokenValue);
 
       if (result) {
         res.status(200).send("Logged Out Successfully");
@@ -46,6 +55,10 @@ class AuthController {
     } catch (e) {
       res.status(400).send("" + e);
     }
+  }
+
+  async test(req: Request, res: Response, next: NextFunction) {
+    res.status(200).send("Working");
   }
 }
 
