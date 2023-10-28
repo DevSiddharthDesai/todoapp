@@ -1,17 +1,17 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Tasks from "./pages/tasks/Tasks";
+import Auth from "./pages/auth/Auth";
+import { Dashboard } from "./pages/dashboard/Dashboard";
 
 function App() {
   return (
     <>
-      <div className="container mx-auto px-24 sm:px-12 lg:px-24 py-24">
+      <div className="mx-auto">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/tasks" element={<Tasks />}></Route>
+            <Route path="/" element={<Auth />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -7,11 +7,11 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to bottom, yellow 50%, white 50%);
-  background-size: 100% 400px;
-  background-repeat: no-repeat;
-  position: relative;
-  overflow: hidden;
+  /* background: linear-gradient(to bottom, yellow 50%, white 50%); */
+  /* backg/round-size: 100% 400px; */
+  /* background-repeat: no-repeat; */
+  /* position: relative; */
+  /* overflow: hidden; */
 }
 
 body::before {
@@ -19,10 +19,10 @@ body::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 400px; /* Adjust the height of the curve */
-  background: #ffff99;
-  border-radius: 0 0 50% 50%;
+  /* width: 100%; */
+  /* height: 400px; Adjust the height of the curve */
+  /* background: #ffff99;
+  border-radius: 0 0 50% 50%; */
 }
 
 #root {
