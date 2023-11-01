@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "../../components/ui/button/Button";
@@ -8,20 +8,70 @@ import Signup from "../../components/common/forms/Signup/Signup";
 import Signin from "../../components/common/forms/Signin/Signin";
 
 const Auth = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
+  const [authState, setAuthState] = useState({
+    login: false,
+    register: false,
+    intro: true,
+  });
+
+  const handlePopState = () => {
+    const currentState = window.history.state;
+    if (
+      !currentState ||
+      (!currentState.showLogin && !currentState.showRegister)
+    ) {
+      setAuthState({
+        intro: true,
+        login: authState.login,
+        register: authState.register,
+      });
+    } else {
+      setAuthState({
+        intro: false,
+        login: authState.login,
+        register: authState.register,
+      });
+    }
+    setAuthState({
+      intro: authState.intro,
+      login: currentState.showLogin,
+      register: currentState.showRegister,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onLoginClickHandler = () => {
-    setShowIntro(false);
-    setShowRegister(false);
-    setShowLogin(true);
+    setAuthState({
+      intro: false,
+      login: true,
+      register: false,
+    });
+
+    window.history.pushState(
+      { showLogin: true, showRegister: false, showIntro: false },
+      ""
+    );
   };
 
   const onRegisterClickHandler = () => {
-    setShowIntro(false);
-    setShowLogin(false);
-    setShowRegister(true);
+    setAuthState({
+      intro: false,
+      login: false,
+      register: true,
+    });
+
+    window.history.pushState(
+      { showLogin: false, showRegister: true, showIntro: false },
+      ""
+    );
   };
   return (
     <>
@@ -35,17 +85,17 @@ const Auth = () => {
             height={"400px"}
           />
         </div>
-        {showLogin && (
+        {authState.login && (
           <div className="flex flex-col items-center justify-center">
             <Signin />
           </div>
         )}
-        {showRegister && (
+        {authState.register && (
           <div className="flex flex-col items-center justify-center">
             <Signup />
           </div>
         )}
-        {showIntro && (
+        {authState.intro && (
           <div className="flex flex-col justify-center mx-auto">
             <h1 className="text-left text-3xl font-bold pb-4">
               Productive Mind Intro

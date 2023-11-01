@@ -24,7 +24,6 @@ export type ButtonProps = {
   onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void;
   onMouseUp?: (event: React.MouseEvent<HTMLElement>) => void;
 };
-// bg-buttonPrimary
 
 const Button = ({
   mode = "primary",
