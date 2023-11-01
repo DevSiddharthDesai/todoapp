@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Button from "../../../ui/button/Button";
 
 const Signin = () => {
   return (
@@ -21,11 +21,7 @@ const Signin = () => {
           />
         </div>
         <div className="w-full p-3">
-          <button className="bg-buttonPrimary w-full px-4 py-4 mb-4">
-            <Link to={"#"} style={{ width: "100%", display: "block" }}>
-              Get Started
-            </Link>
-          </button>
+          <Button mode="primary" title="Sign In" to="#" />
         </div>
       </form>
     </div>

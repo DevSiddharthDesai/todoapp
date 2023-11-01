@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { AuthBackground } from "../../assets/images";
+import Button from "../../components/ui/button/Button";
+
+import { AuthBackground } from "../../utils/images";
 import Signup from "../../components/common/forms/Signup/Signup";
 import Signin from "../../components/common/forms/Signin/Signin";
 
@@ -53,15 +55,12 @@ const Auth = () => {
               individuals seeking a stress-free way to stay focused on their
               goals, projects, and tasks.
             </p>
-            <button className="bg-buttonPrimary px-4 py-4 mb-4">
-              <Link
-                onClick={onRegisterClickHandler}
-                to={"#"}
-                style={{ width: "100%", display: "block" }}
-              >
-                Get Started
-              </Link>
-            </button>
+            <Button
+              mode="primary"
+              title="Get Started"
+              to="#"
+              onClick={onRegisterClickHandler}
+            />
             <Link onClick={onLoginClickHandler} to={"#"}>
               <p className="text-center font-bold">
                 Already have an account? Sign in
