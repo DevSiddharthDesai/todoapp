@@ -7,6 +7,8 @@ import { LuListTodo } from "react-icons/lu";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { PiStickerFill } from "react-icons/pi";
 
+import ListElement from "../../components/ui/list/ListElement";
+
 export const Dashboard = () => {
   const [isLeftOpen, setIsLeftOpen] = useState(false);
   const [isRightOpen, setIsRightOpen] = useState(false);
@@ -51,83 +53,27 @@ export const Dashboard = () => {
               <AiOutlineSearch />
             </span>
             <input
-              type="password"
+              type="text"
               value=""
               className="h-10 border border-gray-200 rounded-r-lg outline-none focus:ring-1 ring-blue-300 w-full pl-1 bg-transparent mb-4"
               id=""
               name=""
-              placeholder="password"
+              placeholder="Search"
             />
           </div>
           <div className="">
             <h3 className="font-bold uppercase">Tasks</h3>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <FaAnglesRight />
-                <span className="text-sm font-semibold pl-3">Upcoming</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <LuListTodo />
-                <span className="text-sm font-semibold pl-3">Upcoming</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <BsFillCalendarCheckFill />
-                <span className="text-sm font-semibold pl-3">Calendar</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <PiStickerFill />
-                <span className="text-sm font-semibold pl-3">Sticky Wall</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
+            <ListElement title="Upcoming" icon={<FaAnglesRight />} />
+            <ListElement title="Calendar" icon={<LuListTodo />} />
+            <ListElement title="Calendar" icon={<BsFillCalendarCheckFill />} />
+            <ListElement title="Calendar" icon={<PiStickerFill />} />
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
           </div>
           <div className="">
             <h3 className="font-bold uppercase">Lists</h3>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <span className="bg-red-500 text-white py-3 px-3 rounded-md text-sm"></span>
-                <span className="text-sm font-semibold pl-3">Personal</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <span className="bg-blue-200 text-white py-3 px-3 rounded-md text-sm"></span>
-                <span className="text-sm font-semibold pl-3">Work</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center">
-                <span className="bg-yellow-500 text-white py-3 px-3 rounded-md text-sm"></span>
-                <span className="text-sm font-semibold pl-3">List 1</span>
-              </div>
-              <span className="bg-blue-500 text-white py-1 px-3 rounded-md text-sm">
-                5
-              </span>
-            </div>
+            <ListElement title="Personal" color={"red"} />
+            <ListElement title="Work" color={"yellow"} />
+            <ListElement title="Project" color={"yellow"} />
             <div className="flex items-center justify-between py-3">
               <div className="flex items-center">
                 <AiOutlinePlus />
