@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Button from "../../components/ui/button/Button";
 
@@ -8,6 +9,15 @@ import Signup from "../../components/common/forms/Signup/Signup";
 import Signin from "../../components/common/forms/Signin/Signin";
 
 const Auth = () => {
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  const logoutWithRedirect = () =>
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+
   const [authState, setAuthState] = useState({
     login: false,
     register: false,
@@ -116,6 +126,27 @@ const Auth = () => {
                 Already have an account? Sign in
               </p>
             </Link>
+            {!isAuthenticated && (
+              <button
+                id="qsLoginBtn"
+                color="primary"
+                onClick={() => loginWithRedirect({})}
+              >
+                Login
+              </button>
+            )}
+            {isAuthenticated && (
+              <>
+                <h6 className="d-inline-block">{user?.name}</h6>
+                <button
+                  id="qsLoginBtn"
+                  color="primary"
+                  onClick={() => loginWithRedirect({})}
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
