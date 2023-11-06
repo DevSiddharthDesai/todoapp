@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Auth from "./pages/auth/Auth";
+import Welcome from "./pages/auth/Welcome";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <div className="mx-auto">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Auth />}></Route>
+            <Route path="/" element={<Welcome />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
           </Routes>
         </BrowserRouter>
