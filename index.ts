@@ -61,7 +61,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/api/external", checkJwt, (_req: Request, res: Response) => {
-  console.log(checkJwt);
   res.send({
     msg: "Your access token was successfully validated!",
   });
