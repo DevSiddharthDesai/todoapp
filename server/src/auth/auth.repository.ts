@@ -10,6 +10,21 @@ class AuthRepository {
     this.model = Auth;
   }
 
+  async createV2(user: IUser): Promise<IUser> {
+    const errors = await this.model.validate(user);
+    if (errors != null) {
+      throw new ValidationError(errors);
+    }
+    const userExists = await this.model.findOne({
+      email: user.email,
+    });
+    if (userExists) {
+      throw new BadRequestError("User Already Exists");
+    }
+    const newUser = await this.model.create(user);
+    return newUser;
+  }
+
   async create(user: IAuth): Promise<IAuth> {
     // Validate input
     const errors = await this.model.validate(user);

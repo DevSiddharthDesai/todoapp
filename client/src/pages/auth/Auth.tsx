@@ -58,6 +58,12 @@ const Auth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(user);
+    }
+  }, [isAuthenticated, user]);
+
   const onLoginClickHandler = () => {
     setAuthState({
       intro: false,
@@ -141,7 +147,7 @@ const Auth = () => {
                 <button
                   id="qsLoginBtn"
                   color="primary"
-                  onClick={() => loginWithRedirect({})}
+                  onClick={() => logoutWithRedirect()}
                 >
                   Logout
                 </button>

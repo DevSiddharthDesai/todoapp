@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "start": "ts-node index.ts",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\" \"npm run client\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "keywords": [],
   "author": "",

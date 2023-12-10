@@ -4,6 +4,17 @@ import { IAuth, IUser } from "./auth.schema";
 import { JsonWebTokenError } from "../../core/errors.core";
 
 class AuthController {
+  async saveUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user: IUser = req.body;
+      const newUser = await authService.createV2(user);
+      if (newUser) {
+        res.status(201).send("User Created Successfully");
+      }
+    } catch (e) {
+      next(e);
+    }
+  }
   async signUp(req: Request, res: Response, next: NextFunction) {
     try {
       const user: IAuth = req.body;
@@ -38,11 +49,6 @@ class AuthController {
       if (!req.headers.cookie) {
         return next(new JsonWebTokenError("Invalid Token"));
       }
-      // if (!req.headers.authorization) {
-      //   return next(new JsonWebTokenError("Invalid Token"));
-      // }
-
-      // const [_, token] = req.headers.authorization.split("Bearer ");
 
       const cookies = req.headers.cookie;
       const tokenValue = cookies?.split("=")[1];
