@@ -12,7 +12,7 @@ import config from "./core/config";
 import { ApiError } from "./core";
 import connectDB from "./core/db";
 import { AuthRouter } from "./src/auth";
-import { authConfig } from "./client/src/auth_config";
+import { authConfig } from "../client/src/auth_config";
 
 type CustomAuthOptions = {
   audience: string;

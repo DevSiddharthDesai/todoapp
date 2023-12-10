@@ -13,6 +13,10 @@ class AuthService {
     return this.authRepo.create(user);
   }
 
+  async createV2(user: IUser): Promise<IUser> {
+    return this.authRepo.createV2(user);
+  }
+
   async signIn(user: IAuth) {
     return this.authRepo.signInByEmail(user);
   }

@@ -38,7 +38,6 @@ const AuthSchema: Schema<IAuth> = new Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   tokens: [
     {
@@ -49,14 +48,14 @@ const AuthSchema: Schema<IAuth> = new Schema({
   ],
 });
 
-AuthSchema.pre("save", async function (done) {
-  if (this.isModified("password") || this.isNew) {
-    const hashedPwd = await authenticationService.pwdToHash(
-      this.get("password")
-    );
-    this.set("password", hashedPwd);
-  }
-});
+// AuthSchema.pre("save", async function (done) {
+//   if (this.isModified("password") || this.isNew) {
+//     const hashedPwd = await authenticationService.pwdToHash(
+//       this.get("password")
+//     );
+//     this.set("password", hashedPwd);
+//   }
+// });
 
 AuthSchema.methods.generateAuthToken = async function () {
   const auth = this;

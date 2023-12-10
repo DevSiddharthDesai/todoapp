@@ -1,10 +1,10 @@
 # production
-server/dist
+dist
 
 # dependencies
-server/node_modules
+node_modules
 
-server/package-lock.json
+package-lock.json
 
 # production
 client/build
@@ -21,4 +21,3 @@ client/nodemon.json
 
 # Git Ignore Client
 client/.gitignore
-node_modules
